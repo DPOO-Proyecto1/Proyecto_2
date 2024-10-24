@@ -15,4 +15,12 @@ public class Profesor extends Usuario {
 	public void clonarActividad() {
 		
 	}
+	
+	public void crarActividad() {
+		
+	}
+	
+	public void editarActividad() {
+		
+	}
  }

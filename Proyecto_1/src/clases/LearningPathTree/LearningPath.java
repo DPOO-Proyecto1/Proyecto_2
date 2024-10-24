@@ -2,7 +2,7 @@
  * 
  */
 package clases.LearningPathTree;
-
+import java.util.HashMap;
 /**
  * Clase del Learning Path
  */
@@ -14,8 +14,10 @@ public class LearningPath {
 	public String nivelDificultad;
 	public int duracion;
 	public float rating;
-	public String metadatos;
-	
+	public String fechaDeCreacion;
+	public String fechaDeModificacion;
+	public String vercion;
+    public HashMap<String, String> estructura;
 	/** FUNCIONES */
 	public void agregarActividad() {
 		
