@@ -9,8 +9,8 @@ public class Consola {
 	private LearningPath learningPath;
 	public Consola() throws IOException {
 		this.learningPath = new LearningPath();
-		this.crearobjetos();
-		this.guardar();
+		//this.crearobjetos();
+		//this.guardar();
 		this.leer();
 	}
 	
