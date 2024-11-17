@@ -58,8 +58,12 @@ public class Actividad {
  * 
  */
 package clases.LearningPathTree;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import Persistencia.ArchivoCSV;
 
 /**
  * 
@@ -117,6 +121,7 @@ public class Actividad {
         // DURACIÓN
         System.out.println("ingrese la DURACIÓN de la actividad en minutos como un número entero: ");
         int duration = input.nextInt();
+		input.nextLine();
         this.duracion = duration;
         
         // FECHA LÍMITE

@@ -1,7 +1,9 @@
 package clases.LearningPathTree;
 import java.util.List;
+import clases.LearningPathTree.Actividad;
 
 public class Profesor extends Usuario {
+	public Actividad actividad; 
 	public List<LearningPath> listaLearningPathsCreados;
 	public Profesor(String username, String email, String password, String rol) {
         super(username, email, password, rol); 
@@ -20,8 +22,12 @@ public class Profesor extends Usuario {
 	}
 	
 	public void crarActividad() {
-		
+		if (actividad == null) {
+        actividad = new Actividad("", ""); 
+		}
+    	actividad.crearActividad();  
 	}
+	
 	
 	public void editarActividad() {
 		

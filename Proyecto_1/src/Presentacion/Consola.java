@@ -167,7 +167,7 @@ public class Consola {
         
         
         while (true) {
-            System.out.print("Seleccione una opcion (d, e, c o 'salir' para finalizar): ");
+            System.out.print("Seleccione una opcion (a, b, c, d o 'salir' para finalizar): ");
             String opcion = scanner.nextLine();
 
             switch (opcion.toLowerCase()) {
