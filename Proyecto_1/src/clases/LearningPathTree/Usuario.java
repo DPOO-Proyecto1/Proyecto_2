@@ -76,16 +76,13 @@ public class Usuario
 	 }
 	public static List<Usuario> cargarUsuarios(String archivoCSV) throws Throwable {
       List<Usuario> usuarios = new ArrayList<Usuario>();
+	  BufferedReader br = null; 
 
-      try {
-         Throwable var2 = null;
-         Throwable var18 = null;
-         
          try {
-            BufferedReader br = new BufferedReader(new FileReader(archivoCSV));
+            br = new BufferedReader(new FileReader(archivoCSV));
 
             String linea;
-            try {
+            
                while((linea = br.readLine()) != null) {
                   String[] datos = linea.split(",");
                   if (datos.length == 4) {
@@ -96,26 +93,20 @@ public class Usuario
                      usuarios.add(new Usuario(username, correo, contraseña, rol));
                   }
                }
-            } finally {
-               if (br != null) {
-                  br.close();
-               }
-
-            }
-         } catch (Throwable var18) {
-            if (var2 == null) {
-               var2 = var18;
-            } else if (var2 != var18) {
-               var2.addSuppressed(var18);
-            }
-
-            throw var2;
-         }
-      } catch (IOException var19) {
-         var19.printStackTrace();
-      }
-
-      return usuarios;
+            } catch (IOException e) {
+				e.printStackTrace();
+				throw e;  // Vuelve a lanzar la excepción si es necesario
+			} finally {
+				if (br != null) {
+					try {
+						br.close();  // Asegúrate de cerrar el BufferedReader en el bloque finally
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		
+		return usuarios;
    }
 
    public static boolean verificarUsuario(List<Usuario> usuarios, String rol, String correo, String contraseña) {
