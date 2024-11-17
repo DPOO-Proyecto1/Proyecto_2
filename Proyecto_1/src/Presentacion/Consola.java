@@ -88,7 +88,8 @@ public class Consola {
                     Estudiante estudiante= new Estudiante(correo, correo, contraseña, rol);
                     mostrarOpcionesEstudiante(scanner, estudiante);
                 } else if (rol.equals("profesor")) {
-                    mostrarOpcionesProfesor(scanner);
+                    Profesor profesor= new Profesor(correo, correo, contraseña, rol);
+                    mostrarOpcionesProfesor(scanner, profesor);
                 }
                 
             } else {
@@ -150,7 +151,7 @@ public class Consola {
     }
 
     // profesor
-    public static void mostrarOpcionesProfesor(Scanner scanner) {
+    public static void mostrarOpcionesProfesor(Scanner scanner, Profesor profesor) {
         System.out.println("Opciones para profesor:");
         System.out.println("a) crear leaning path");
         System.out.println("b) editar learning path");
@@ -159,8 +160,6 @@ public class Consola {
         System.out.println("e) clonar actividad");
         System.out.println("f) agregar actividad a lea");
         System.out.println("salir) Salir");
-        
-        Profesor profesor = new Profesor();
         
         while (true) {
             System.out.print("Seleccione una opcion (d, e, c o 'salir' para finalizar): ");
