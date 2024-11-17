@@ -58,7 +58,6 @@ public class Actividad {
  * 
  */
 package clases.LearningPathTree;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 

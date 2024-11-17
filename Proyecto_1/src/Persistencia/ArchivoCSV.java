@@ -26,6 +26,7 @@ public class ArchivoCSV {
 		while((linea=br.readLine()) != null) {
 			textos.add(linea);
 		}
+		br.close();
 		return textos;
 	}
 	

@@ -75,12 +75,12 @@ public class Usuario
 		return this.rol;
 	 }
 	public static List<Usuario> cargarUsuarios(String archivoCSV) throws Throwable {
-      List<Usuario> usuarios = new ArrayList();
+      List<Usuario> usuarios = new ArrayList<Usuario>();
 
       try {
          Throwable var2 = null;
-         Object var3 = null;
-
+         Throwable var18 = null;
+         
          try {
             BufferedReader br = new BufferedReader(new FileReader(archivoCSV));
 
@@ -119,7 +119,7 @@ public class Usuario
    }
 
    public static boolean verificarUsuario(List<Usuario> usuarios, String rol, String correo, String contraseña) {
-      Iterator var5 = usuarios.iterator();
+      Iterator<Usuario> var5 = usuarios.iterator();
 
       Usuario usuario;
       do {
