@@ -46,10 +46,13 @@ public class Consola {
 }*/
 
 package Presentacion;
+import clases.LearningPathTree.Actividad;
 import clases.LearningPathTree.Estudiante;
+import clases.LearningPathTree.LearningPath;
 import clases.LearningPathTree.Profesor;
 import clases.LearningPathTree.Usuario;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -149,7 +152,7 @@ public class Consola {
             }
         }
     }
-
+    
     // profesor
     public static void mostrarOpcionesProfesor(Scanner scanner, Profesor profesor) {
         System.out.println("Opciones para profesor:");
@@ -160,6 +163,8 @@ public class Consola {
         System.out.println("e) clonar actividad");
         System.out.println("f) agregar actividad a lea");
         System.out.println("salir) Salir");
+
+        
         
         while (true) {
             System.out.print("Seleccione una opcion (d, e, c o 'salir' para finalizar): ");
@@ -180,6 +185,7 @@ public class Consola {
 	                break;
 	            case "e":
 	                profesor.clonarActividad();
+                    System.out.print("Actividades disponibles para clonar: "); 
 	                break;
 	            case "f":
 	            	System.out.println("Opcion f seleccionada.");
@@ -193,5 +199,7 @@ public class Consola {
             }
         }
     }
+    
+    
 }
 

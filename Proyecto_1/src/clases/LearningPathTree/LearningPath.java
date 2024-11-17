@@ -67,9 +67,13 @@ public class LearningPath {
 	}
 }*/
 package clases.LearningPathTree;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+
+import Persistencia.ArchivoCSV;
 /**
  * Clase del Learning Path
  */
@@ -114,5 +118,37 @@ public class LearningPath {
 			}
 		}
 	}
+	//// revisar lectura 
+	private ArrayList<Actividad> actividades;
+	public void leerActividades() throws IOException {
+		ArrayList<String> textos = ArchivoCSV.leerArchivoCSV("Actividades.csv");
+		for(String texto : textos) {
+			String []valores = texto.split(",");
+			Actividad ActividadLeida = new Actividad(valores[0], valores[1]);
+			this.actividades.add(ActividadLeida);
+		}
+	}
+	public ArrayList<Actividad> getActividades() throws IOException {
+		this.leerActividades();
+		return actividades;
+	}
+	public LearningPath() {
+		this.actividades = new ArrayList<Actividad>();
+	}
+	public void agregarActividad(String nombre, String tipo) {
+		Actividad nuevaActividad = new Actividad(nombre, tipo);
+		this.actividades.add(nuevaActividad);
+	}
+	
+	
+	/*public static void guardarActividad() throws IOException {
+		ArrayList<String> textos = new ArrayList<String>();
+		for(Actividad actividad : this.actividades) 
+			textos.add(actividad.toString());
+		
+		ArchivoCSV.guardarTextoCSV(textos, "Actividades.csv");
+	}*/
+	
+	
 }
 

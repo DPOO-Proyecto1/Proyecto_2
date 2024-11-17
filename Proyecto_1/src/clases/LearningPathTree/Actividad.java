@@ -81,6 +81,10 @@ public class Actividad {
 	public List<Float> rating;
 	public String autor;
 	
+	public Actividad(String string, String string2) {
+		//TODO Auto-generated constructor stub
+	}
+
 	/** FUNCIONES */
 	public void crearActividad() {
 		
