@@ -1,2 +1,2 @@
-Nombre, Tipo
-Contabilidad, Tarea
+Nombre, Tipo, descripcion, objetivo, dificultad, duracion, actividadesPrevias, fechaLimite, resultado, obligatorio, reseña, rating, autor, learningPath
+Contabilidad, Tarea, hacer los asientos contables de una emprese, comprendes las cuentas T ,Facil, 23, [], 150520224, bun, Si, ninguna, 4de5, Carlos, Conta
