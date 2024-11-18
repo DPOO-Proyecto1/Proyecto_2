@@ -53,8 +53,11 @@ import clases.LearningPathTree.Profesor;
 import clases.LearningPathTree.Usuario;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+
+import Persistencia.ActividadLoader;
 
 public class Consola {
 
@@ -64,6 +67,7 @@ public class Consola {
         String rol;
         String archivoCSV = "Usuarios.csv";
         List<Usuario> usuarios = Usuario.cargarUsuarios(archivoCSV);
+        HashMap<String, HashMap<String, Object>> actividades = ActividadLoader.cargarActividadesDesdeArchivo("Actividades.bin");
 
         System.out.println("Bienvenido. Escriba 'salir' en cualquier momento para salir.");
 
