@@ -22,9 +22,9 @@ public class Profesor extends Usuario {
 	}
 	
 	public void crarActividad() {
-		if (actividad == null) {
+		/*if (actividad == null) {
         actividad = new Actividad("", ""); 
-		}
+		}*/
     	actividad.crearActividad();  
 	}
 	
