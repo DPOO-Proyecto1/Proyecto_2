@@ -60,14 +60,16 @@ import java.util.Scanner;
 import Persistencia.ActividadLoader;
 
 public class Consola {
-
+	static HashMap<String, HashMap<String, Object>> actividades = ActividadLoader.cargarActividadesDesdeArchivo("Actividades.bin");
+	
+        
     public static void main(String[] args) throws Throwable {
         Scanner scanner = new Scanner(System.in);
         String correo, contraseña;
         String rol;
         String archivoCSV = "Usuarios.csv";
         List<Usuario> usuarios = Usuario.cargarUsuarios(archivoCSV);
-        HashMap<String, HashMap<String, Object>> actividades = ActividadLoader.cargarActividadesDesdeArchivo("Actividades.bin");
+        
 
         System.out.println("Bienvenido. Escriba 'salir' en cualquier momento para salir.");
 
@@ -127,7 +129,8 @@ public class Consola {
             System.out.println("Opciones para estudiante:");
             System.out.println("a) Ver Learning pat");
             System.out.println("b) Iniciar actividad");
-            System.out.println("c) Historial ");
+            System.out.println("c) Ver actividades");
+            System.out.println("d) Historial");
             System.out.println("salir) Salir");
             //Estudiante estudiante= new Estudiante("usuario", "correo", "contraseña", "rol");
     
@@ -145,8 +148,14 @@ public class Consola {
                     estudiante.realizarActividad();
                     break;
                 case "c":
-                    System.out.println("Opción C seleccionada.");
+                	for (String nombre : actividades.keySet()) {
+                        System.out.println(nombre + ": " + actividades.get(nombre));
+                	}
                     break;
+                    
+                case "d":
+                	System.out.println("Opción C seleccionada.");
+                	break;
                 case "salir":
                     System.out.println("Saliendo de las opciones de estudiante...");
                     return; // Regresar al menú principal
@@ -182,7 +191,15 @@ public class Consola {
 	                profesor.editarLearningPath();
 	                break;
 	            case "c":
-	                profesor.crarActividad();
+	                Actividad nuevaActividad = new Actividad(
+	                        "Actividad 1", "Recurso", "Se tiene que leer el siguiente archivo",
+	                        "Mejorar el entendimiento del estudiante", "Media", 120, "No",
+	                        "2024-01-16", "null", false, "null",
+	                        0, "Ramona Cecilia", "Learning Path B"
+	                    );
+
+	                    // Añadir la nueva actividad al HashMap y al archivo binario
+	                    nuevaActividad.añadirActividad(actividades, "Actividades.bin");
 	                break;
 	            case "d":
 	                profesor.editarActividad();

@@ -83,26 +83,29 @@ public class Actividad implements Serializable {
     private String learningPath;
 
  // Constructor
-    public Actividad(String nombre, String tipo, String descripcion, String objetivo, String dificultad, int duracion,
-                     String actividadesPrevias, String fechaLimite, String resultado, boolean obligatorio,
-                     String reseñas, double rating, String autor, String learningPath) {
-        this.nombre = nombre;
-        this.tipo = tipo;
-        this.descripcion = descripcion;
-        this.objetivo = objetivo;
-        this.dificultad = dificultad;
-        this.duracion = duracion;
-        this.actividadesPrevias = actividadesPrevias;
-        this.fechaLimite = fechaLimite;
-        this.resultado = resultado;
-        this.obligatorio = obligatorio;
-        this.reseñas = reseñas;
-        this.rating = rating;
-        this.autor = autor;
-        this.learningPath = learningPath;
-    }
 
-    // Getters para cada atributo
+
+    public Actividad(String nombre, String tipo, String descripcion, String objetivo, String dificultad, int duracion,
+            String actividadesPrevias, String fechaLimite, String resultado, boolean obligatorio,
+            String reseñas, double rating, String autor, String learningPath) {
+				this.nombre = nombre;
+				this.tipo = tipo;
+				this.descripcion = descripcion;
+				this.objetivo = objetivo;
+				this.dificultad = dificultad;
+				this.duracion = duracion;
+				this.actividadesPrevias = actividadesPrevias;
+				this.fechaLimite = fechaLimite;
+				this.resultado = resultado;
+				this.obligatorio = obligatorio;
+				this.reseñas = reseñas;
+				this.rating = rating;
+				this.autor = autor;
+				this.learningPath = learningPath;
+}
+	
+
+	// Getters para cada atributo
     public String getNombre() {
         return nombre;
     }
@@ -162,35 +165,8 @@ public class Actividad implements Serializable {
  // Método para añadir una nueva actividad al HashMap y al archivo binario
     public void añadirActividad(HashMap<String, HashMap<String, Object>> actividadesMap, String nombreArchivo) {
         // Crear un HashMap para los atributos de la actividad
-        HashMap<String, Object> atributos = new HashMap<>();
-        atributos.put("tipo", this.tipo);
-        atributos.put("descripcion", this.descripcion);
-        atributos.put("objetivo", this.objetivo);
-        atributos.put("dificultad", this.dificultad);
-        atributos.put("duracion", this.duracion);
-        atributos.put("actividadesPrevias", this.actividadesPrevias);
-        atributos.put("fechaLimite", this.fechaLimite);
-        atributos.put("resultado", this.resultado);
-        atributos.put("obligatorio", this.obligatorio);
-        atributos.put("reseñas", this.reseñas);
-        atributos.put("rating", this.rating);
-        atributos.put("autor", this.autor);
-        atributos.put("learningPath", this.learningPath);
-
-        // Actualizar el HashMap en memoria con la nueva actividad
-        actividadesMap.put(this.nombre, atributos);
-
-        // Llamar a agregarActividad en ActividadLoader para almacenar en el archivo
-        ActividadLoader.agregarActividad(this, nombreArchivo);
-    }
-
-    //cambios Camilo
-	
-
-	/** FUNCIONES */
-	public void crearActividad() {
-		
-		Scanner input = new Scanner(System.in);
+    	
+    	/*Scanner input = new Scanner(System.in);
 		
 		// NOMBRE
         System.out.println("Ingrese el NOMBRE de la actividad: ");
@@ -241,6 +217,36 @@ public class Actividad implements Serializable {
         this.autor = author;
         
         input.close();
+        */
+        HashMap<String, Object> atributos = new HashMap<>();
+        atributos.put("tipo", this.tipo);
+        atributos.put("descripcion", this.descripcion);
+        atributos.put("objetivo", this.objetivo);
+        atributos.put("dificultad", this.dificultad);
+        atributos.put("duracion", this.duracion);
+        atributos.put("actividadesPrevias", this.actividadesPrevias);
+        atributos.put("fechaLimite", this.fechaLimite);
+        atributos.put("resultado", this.resultado);
+        atributos.put("obligatorio", this.obligatorio);
+        atributos.put("reseñas", this.reseñas);
+        atributos.put("rating", this.rating);
+        atributos.put("autor", this.autor);
+        atributos.put("learningPath", this.learningPath);
+
+        // Actualizar el HashMap en memoria con la nueva actividad
+        actividadesMap.put(this.nombre, atributos);
+
+        // Llamar a agregarActividad en ActividadLoader para almacenar en el archivo
+        ActividadLoader.agregarActividad(this, nombreArchivo);
+    }
+
+    //cambios Camilo
+	
+
+	/** FUNCIONES */
+	public void crearActividad() {
+		
+		
 	}
 	
 	public void completarActividad() {
