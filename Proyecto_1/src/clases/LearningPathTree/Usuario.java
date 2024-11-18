@@ -74,6 +74,7 @@ public class Usuario
 	 public String getRol() {
 		return this.rol;
 	 }
+	 
 	public static List<Usuario> cargarUsuarios(String archivoCSV) throws Throwable {
       List<Usuario> usuarios = new ArrayList<Usuario>();
 	  BufferedReader br = null; 

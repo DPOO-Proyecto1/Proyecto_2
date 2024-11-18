@@ -76,7 +76,6 @@ public class Actividad implements Serializable {
     private String actividadesPrevias;
     private String fechaLimite;
     private String resultado;
-    private boolean obligatorio;
     private String reseñas;
     private double rating;
     private String autor;
