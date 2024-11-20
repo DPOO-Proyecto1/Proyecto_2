@@ -5,8 +5,8 @@ import clases.LearningPathTree.Actividad;
 public class Profesor extends Usuario {
 	public Actividad actividad; 
 	public List<LearningPath> listaLearningPathsCreados;
-	public Profesor(String username, String email, String password, String rol) {
-        super(username, email, password, rol); 
+	public Profesor(String username, String email, String password) {
+        super(username, email, password, "profesor"); 
     }
 	
 	public void crearLearningPath() {

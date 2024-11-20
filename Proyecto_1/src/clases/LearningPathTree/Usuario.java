@@ -21,37 +21,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Scanner;
 
 public class Usuario 
 {
-	public String username;
-	public String password;
-	public String email;
-	public String rol;
+	private String username;
+	private String password;
+	private String email;
+	private String rol;
+	private boolean ocupado;
 	
-	/*public void login() 
-	{
-		boolean processing = true;
-		while (processing) 
-		{
-			Scanner input = new Scanner(System.in);
-	        System.out.println("USUARIO: ");
-	        String usuario = input.next();
-	        input.close();
-	        if (usuario != "name")
-	        {System.out.println("Usuario no existe, revise errores de ortografía e intente otra vez.");}
-	        else 
-	        {
-	        	System.out.println("Usuario encontrado!");
-	        	System.out.println("CONTRASEÑA: ");
-	        	String contraseña = input.next();
-		        input.close();
-		        if (contraseña != "contraseña")
-		        {System.out.println("Contraseña incorrecta, por favor intente otra vez.");}
-	        }
-	     }
-	}*/
+	
 	public Usuario(String username, String email, String password, String rol) {
 		this.username = username;
 		this.email = email;
@@ -73,6 +52,9 @@ public class Usuario
   
 	 public String getRol() {
 		return this.rol;
+	 }
+	 public boolean getOcupado(){
+		 return this.ocupado;
 	 }
 	 
 	public static List<Usuario> cargarUsuarios(String archivoCSV) throws Throwable {
@@ -110,22 +92,27 @@ public class Usuario
 		return usuarios;
    }
 
-   public static boolean verificarUsuario(List<Usuario> usuarios, String rol, String correo, String contraseña) {
-      Iterator<Usuario> var5 = usuarios.iterator();
-
-      Usuario usuario;
-      do {
-         if (!var5.hasNext()) {
-            return false;
-         }
-
-         usuario = (Usuario)var5.next();
-      } while(!usuario.getRol().equals(rol) || !usuario.getEmail().equals(correo) || !usuario.getPassword().equals(contraseña));
-
-      return true;
-   }
-	
-	public void logout() {
-		System.out.println("Ha salido correctamente del sistema.");
+	public static Object verificarUsuario(List<Usuario> usuarios, String correo, String contraseña) {
+	    for (Usuario usuario : usuarios) {
+	        if (usuario.getEmail().equals(correo) && usuario.getPassword().equals(contraseña)) {
+	        	if (usuario.getRol() == "estudiante") {
+	        		Estudiante estudiante = new Estudiante(
+	        			    usuario.getUsername(),
+	        			    usuario.getEmail(),
+	        			    usuario.getPassword(),
+	        			    usuario.getOcupado());
+	        		return estudiante;
+	        	}
+	        	else {
+	        		Profesor profesor = new Profesor(
+	        			    usuario.getUsername(),
+	        			    usuario.getEmail(),
+	        			    usuario.getPassword());
+	        		return profesor;
+	        		
+	        	}
+	        }
+	    }
+	    return "Usuario o contraseña incorrectos"; // Devuelve un mensaje si no se encuentra el usuario
 	}
 }

@@ -1,19 +1,26 @@
 package clases.LearningPathTree;
-import java.util.List;
+
 
 public class Estudiante extends Usuario {
-	public boolean ocupado=false;
-	public float progreso;
-	public List<LearningPath> listaLearningPathsInscritos;
-	public Estudiante(String username, String email, String password, String rol) {
-        super(username, email, password, rol); 
+    private boolean ocupado;
+
+    // Constructor de Estudiante que llama al constructor de Usuario
+    public Estudiante(String username, String email, String password, boolean ocupado) {
+        super(username, email, password, "estudiante"); // Llama al constructor de Usuario
+        this.ocupado = ocupado;
     }
-	
-	public void verLearningPath() {
-		
-	}
-	
-	public void realizarActividad() {
-		
-	}
+
+    // Getter y Setter para el atributo adicional
+    public boolean getOccupado() {
+        return ocupado;
+    }
+
+    public void setocupado(boolean ocupado) {
+        this.ocupado = ocupado;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", Grado: " + ocupado;
+    }
 }

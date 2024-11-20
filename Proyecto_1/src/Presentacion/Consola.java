@@ -40,23 +40,22 @@ public class Consola {
 
             System.out.print("Ingrese su contraseña: ");
             contraseña = scanner.nextLine();
-            System.out.print("Ingrese su rol estudiante o profesor ");
-            rol = scanner.nextLine();
             // Llamada a la función de login
-            boolean identificacionCorrecta = Usuario.verificarUsuario(usuarios, rol, correo, contraseña); 
+            
+            Object user = Usuario.verificarUsuario(usuarios, correo, contraseña); 
 
-            if (identificacionCorrecta){
-                if (rol.equals("estudiante")) {
-                    
-                    Estudiante estudiante= new Estudiante(correo, correo, contraseña, rol);
-                    mostrarOpcionesEstudiante(scanner, estudiante);
-                } else if (rol.equals("profesor")) {
-                    Profesor profesor= new Profesor(correo, correo, contraseña, rol);
-                    mostrarOpcionesProfesor(scanner, profesor);
-                }
+            if (user instanceof Estudiante) {
+                Estudiante estudiante = (Estudiante) user;
+                System.out.println("Bienvenido, " + estudiante.getUsername() + "!");
+                mostrarOpcionesEstudiante(scanner, estudiante);
                 
-            } else {
-                System.out.println("Credenciales incorrectas. Intente nuevamente.\n");
+            } else if (user instanceof Profesor) {
+                    Profesor profesor = (Profesor) user;
+                    System.out.println("Bienvenido, " + profesor.getUsername() + "!");
+                    mostrarOpcionesProfesor(scanner, profesor);
+                    
+            } else if (user instanceof String) {
+                System.out.println((String) user); // Imprime el mensaje de error
             }
         }
     }
@@ -138,6 +137,8 @@ public class Consola {
 	                System.out.println("ingrese el objetivo de la actividad como un párrafo: ");
 	                String objetivo = input.next();
 	                System.out.println("ingrese la DIFICULTAD de la actividad: ");
+	                String contenido = input.next();
+	                System.out.println("ingrese el CONTENIDO de la actividad: ");
 	                String dificultad = input.next();
 	                System.out.println("ingrese la DURACIÓN de la actividad en minutos como un número entero: ");
 	                int duration = input.nextInt();
@@ -158,7 +159,7 @@ public class Consola {
 	                
 	                Actividad nuevaActividad = new Actividad(
 	                		name, type, description,
-	                		objetivo, dificultad, duration, actividadesprevisas, fechaLimite,
+	                		objetivo, contenido, dificultad, duration, actividadesprevisas, fechaLimite,
 	                		required, author);
 	                
 	                    // Añadir la nueva actividad al HashMap y al archivo binario
