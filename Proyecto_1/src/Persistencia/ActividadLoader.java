@@ -47,11 +47,24 @@ public class ActividadLoader {
     }
 
     // Método para agregar una nueva actividad al archivo binario
-    public static void agregarActividad(Actividad nuevaActividad, String nombreArchivo) {
-        try (AppendableObjectOutputStream oos = new AppendableObjectOutputStream(new FileOutputStream(nombreArchivo, true))) {
-            oos.writeObject(nuevaActividad); // Escribir el objeto actividad en el archivo
-            System.out.println("Actividad agregada exitosamente.");
-        } catch (IOException e) {
+    public static void agregarActividad(Actividad nuevaActividad) {
+    	File archivo = new File("Actividades.bin");
+
+        try {
+    		if (archivo.exists()) {
+    			
+	        	try (AppendableObjectOutputStream oos = new AppendableObjectOutputStream(new FileOutputStream("Actividades.bin", true))) {
+	    			oos.writeObject(nuevaActividad); // Escribir el objeto actividad en el archivo
+	    			System.out.println("Actividad agregada exitosamente.");
+	        		}
+    		}else {
+	                // Si el archivo no existe, crea uno nuevo con ObjectOutputStream
+	                try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivo))){ 	 
+	                    oos.writeObject(nuevaActividad);
+    			}
+    		}
+        }
+         catch (IOException e) {
             System.out.println("Error al agregar la actividad: " + e.getMessage());
         }
     }

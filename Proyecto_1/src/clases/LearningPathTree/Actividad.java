@@ -86,9 +86,9 @@ public class Actividad implements Serializable {
 
 
     public Actividad(String nombre, String tipo, String descripcion, String objetivo, String dificultad, int duracion,
-            String actividadesPrevias, String fechaLimite, String resultado, boolean obligatorio,
-            String reseñas, double rating, String autor, String learningPath) {
-				this.nombre = nombre;
+            String actividadesPrevias, String fechaLimite, boolean obligatorio, String autor) {
+				
+    			this.nombre = nombre;
 				this.tipo = tipo;
 				this.descripcion = descripcion;
 				this.objetivo = objetivo;
@@ -96,12 +96,8 @@ public class Actividad implements Serializable {
 				this.duracion = duracion;
 				this.actividadesPrevias = actividadesPrevias;
 				this.fechaLimite = fechaLimite;
-				this.resultado = resultado;
 				this.obligatorio = obligatorio;
-				this.reseñas = reseñas;
-				this.rating = rating;
 				this.autor = autor;
-				this.learningPath = learningPath;
 }
 	
 
@@ -237,7 +233,7 @@ public class Actividad implements Serializable {
         actividadesMap.put(this.nombre, atributos);
 
         // Llamar a agregarActividad en ActividadLoader para almacenar en el archivo
-        ActividadLoader.agregarActividad(this, nombreArchivo);
+        ActividadLoader.agregarActividad(this);
     }
 
     //cambios Camilo

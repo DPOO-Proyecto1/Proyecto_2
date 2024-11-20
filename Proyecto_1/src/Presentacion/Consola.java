@@ -1,51 +1,5 @@
-/*package Presentacion;
-
-import java.io.IOException;
-
-import clases.LearningPathTree.Actividad;
-import clases.LearningPathTree.LearningPath;
-
-public class Consola {
-	private LearningPath learningPath;
-	public Consola() throws IOException {
-		this.learningPath = new LearningPath();
-		//this.crearobjetos();
-		//this.guardar();
-		this.leer();
-	}
-	
-	private void leer() throws IOException {
-		try {
-            this.learningPath.getActividades();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-		for(Actividad actividades : this.learningPath.getActividades())
-        
-		    System.out.println(actividades.toString());
-        System.out.println(this.learningPath.getActividades());
-        
-    
-    }
-	
-
-	private void guardar() throws IOException {
-			LearningPath.guardarActividad(null);
-		
-	}
-
-	private void crearobjetos() {
-		this.learningPath.agregarActividad("Parcial 2", "Examen");	
-        
-	}
-
-	public static void main(String[] args) throws IOException {
-		new Consola();
-	}
-}*/
-
 package Presentacion;
+
 import clases.LearningPathTree.Actividad;
 import clases.LearningPathTree.Estudiante;
 import clases.LearningPathTree.LearningPath;
@@ -105,26 +59,9 @@ public class Consola {
                 System.out.println("Credenciales incorrectas. Intente nuevamente.\n");
             }
         }
-
-        // Menú según el rol del usuario
-        
-
-        //scanner.close();
-        //System.out.println("Consola finalizada.");
     }
 
-    // Simulación de función autenticación 
-    /*public static String login(String user, String password) {
-        if (user.equals("estudiante") && password.equals("1234")) {
-            return "estudiante";
-        } else if (user.equals("profesor") && password.equals("admin")) {
-            return "profesor";
-        } else {
-            return "fallido";
-        }
-    }*/
 
-    // estudiante
     public static void mostrarOpcionesEstudiante(Scanner scanner, Estudiante estudiante) {
             System.out.println("Opciones para estudiante:");
             System.out.println("a) Ver Learning pat");
@@ -191,15 +128,43 @@ public class Consola {
 	                profesor.editarLearningPath();
 	                break;
 	            case "c":
+	            	Scanner input = new Scanner(System.in);
+	            	System.out.println("Ingrese el NOMBRE de la actividad: ");
+	                String name = input.next();
+	                System.out.println("Ingrese el TIPO de la actividad: ");
+	                String type = input.next();
+	                System.out.println("ingrese la DESCRIPCIÓN de la actividad como un párrafo: ");
+	                String description = input.next();
+	                System.out.println("ingrese el objetivo de la actividad como un párrafo: ");
+	                String objetivo = input.next();
+	                System.out.println("ingrese la DIFICULTAD de la actividad: ");
+	                String dificultad = input.next();
+	                System.out.println("ingrese la DURACIÓN de la actividad en minutos como un número entero: ");
+	                int duration = input.nextInt();
+	                System.out.println("ingrese las actividades previas a la actividad: ");
+	                String actividadesprevisas = input.next();
+	                System.out.println("ingrese la FECHA LÍMITE de la actividad: ");
+	                String fechaLimite = input.next();
+	                System.out.println("Es esta actividad OBLIGATORIA? [si/no]: ");
+	                boolean required; input.next();
+	                if (input.next() == "si") 
+	                	{required = true;} 
+	                else
+	                	{required = false;}
+	                
+	                System.out.println("Ingrese su nombre para registrar AUTOR: ");
+	                String author = input.next();
+	                
+	                
 	                Actividad nuevaActividad = new Actividad(
-	                        "Actividad 1", "Recurso", "Se tiene que leer el siguiente archivo",
-	                        "Mejorar el entendimiento del estudiante", "Media", 120, "No",
-	                        "2024-01-16", "null", false, "null",
-	                        0, "Ramona Cecilia", "Learning Path B"
-	                    );
-
+	                		name, type, description,
+	                		objetivo, dificultad, duration, actividadesprevisas, fechaLimite,
+	                		required, author);
+	                
 	                    // Añadir la nueva actividad al HashMap y al archivo binario
 	                    nuevaActividad.añadirActividad(actividades, "Actividades.bin");
+
+	                    
 	                break;
 	            case "d":
 	                profesor.editarActividad();
