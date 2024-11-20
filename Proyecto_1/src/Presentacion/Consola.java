@@ -77,11 +77,11 @@ public class Consola {
                 switch (opcion.toLowerCase()) {
                     case "a":
                         System.out.println("Opción A seleccionada.");
-                        estudiante.verLearningPath();
+                        //estudiante.verLearningPath();
                     break;
                 case "b":
                     System.out.println("Opción B seleccionada.");
-                    estudiante.realizarActividad();
+                    //estudiante.realizarActividad();
                     break;
                 case "c":
                 	for (String nombre : actividades.keySet()) {

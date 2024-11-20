@@ -71,6 +71,7 @@ public class Actividad implements Serializable {
     private String tipo;
     private String descripcion;
     private String objetivo;
+    private String contenido;
     private String dificultad;
     private int duracion;
     private String actividadesPrevias;
@@ -85,13 +86,14 @@ public class Actividad implements Serializable {
  // Constructor
 
 
-    public Actividad(String nombre, String tipo, String descripcion, String objetivo, String dificultad, int duracion,
+    public Actividad(String nombre, String tipo, String descripcion, String objetivo, String contenido, String dificultad, int duracion,
             String actividadesPrevias, String fechaLimite, boolean obligatorio, String autor) {
 				
     			this.nombre = nombre;
 				this.tipo = tipo;
 				this.descripcion = descripcion;
 				this.objetivo = objetivo;
+				this.contenido = contenido;
 				this.dificultad = dificultad;
 				this.duracion = duracion;
 				this.actividadesPrevias = actividadesPrevias;
