@@ -71,6 +71,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 import Persistencia.ArchivoCSV;
@@ -118,27 +119,47 @@ public class LearningPath {
 			}
 		}
 	}
-	//// revisar lectura 
-	private ArrayList<Actividad> actividades;
-	public void leerActividades() throws IOException {
-		ArrayList<String> textos = ArchivoCSV.leerArchivoCSV("Actividades.csv");
-		for(String texto : textos) {
-			String []valores = texto.split(",");
-			Actividad ActividadLeida = new Actividad(valores[0], valores[1]);
-			this.actividades.add(ActividadLeida);
-		}
-	}
-	public ArrayList<Actividad> getActividades() throws IOException {
-		this.leerActividades();
-		return actividades;
-	}
+	/*
 	public LearningPath() {
 		this.actividades = new ArrayList<Actividad>();
 	}
-	public void agregarActividad(String nombre, String tipo) {
+	*public void agregarActividad(String nombre, String tipo) {
 		Actividad nuevaActividad = new Actividad(nombre, tipo);
 		this.actividades.add(nuevaActividad);
 	}
+	*/
+	public HashMap<String, List<String>> cargarLearningPaths(HashMap<String, HashMap<String, String>> actividades) {
+		
+		// Este será el resultado
+        HashMap<String, List<String>> agrupadasPorLearningPath = new HashMap<>();
+
+        // Recorremos el HashMap original
+        for (Entry<String, HashMap<String, String>> actividadEntry : actividades.entrySet()) {
+            String nombreActividad = actividadEntry.getKey(); // Nombre de la actividad
+            HashMap<String, String> atributos = actividadEntry.getValue(); // Atributos de la actividad
+
+            // Obtenemos el valor de "learningPath"
+            String learningPath = atributos.get("learningPath");
+
+            // Si el learningPath es "no", lo ignoramos
+            if ( learningPath == "no") {
+                continue;
+            }
+
+            // Si el learningPath no está en el resultado, lo inicializamos
+            agrupadasPorLearningPath.putIfAbsent(learningPath, new ArrayList<>());
+
+            // Agregamos el nombre de la actividad a la lista correspondiente
+            agrupadasPorLearningPath.get(learningPath).add(nombreActividad);
+        }
+        
+        for (Entry<String, List<String>> entry : agrupadasPorLearningPath.entrySet()) {
+            System.out.println("Learning Path: " + entry.getKey());
+            System.out.println("Actividades: " + entry.getValue());
+        }
+        return agrupadasPorLearningPath;
+	}
+	
 	
 	
 	/*public static void guardarActividad() throws IOException {

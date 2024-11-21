@@ -6,6 +6,7 @@ import java.util.HashMap;
 import clases.LearningPathTree.Actividad;
 
 public class ActividadLoader {
+	
 
     public static HashMap<String, HashMap<String, Object>> cargarActividadesDesdeArchivo(String nombreArchivo) {
         HashMap<String, HashMap<String, Object>> actividadesMap = new HashMap<>();

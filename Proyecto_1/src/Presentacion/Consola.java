@@ -15,7 +15,7 @@ import Persistencia.ActividadLoader;
 
 public class Consola {
 	static HashMap<String, HashMap<String, Object>> actividades = ActividadLoader.cargarActividadesDesdeArchivo("Actividades.bin");
-	
+	//static HashMap<string, HashMap<String, Object>> learningPaths = learningPathLoader.cargarLearningPaths(actividades);
         
     public static void main(String[] args) throws Throwable {
         Scanner scanner = new Scanner(System.in);

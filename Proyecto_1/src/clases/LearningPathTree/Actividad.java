@@ -67,6 +67,9 @@ import Persistencia.ActividadLoader;
 import java.io.Serializable;
 
 public class Actividad implements Serializable {
+	
+	private static final long serialVersionUID = 1L; // Define un ID fijo
+	
     private String nombre;
     private String tipo;
     private String descripcion;
@@ -162,60 +165,7 @@ public class Actividad implements Serializable {
     
  // Método para añadir una nueva actividad al HashMap y al archivo binario
     public void añadirActividad(HashMap<String, HashMap<String, Object>> actividadesMap, String nombreArchivo) {
-        // Crear un HashMap para los atributos de la actividad
-    	
-    	/*Scanner input = new Scanner(System.in);
-		
-		// NOMBRE
-        System.out.println("Ingrese el NOMBRE de la actividad: ");
-        String name = input.next();
-        this.nombre = name;
-        
-        // TIPO
-        System.out.println("Ingrese el TIPO de la actividad: ");
-        String type = input.next();
-        this.tipo = type;
-        
-        // DESCRIPCIÓN
-        System.out.println("ingrese la DESCRIPCIÓN de la actividad como un párrafo: ");
-        String description = input.next();
-        this.descripcion = description;
-        
-        // DESCRIPCIÓN
-        System.out.println("ingrese el OBJETIVO de la actividad: ");
-        String objective = input.next();
-        this.objetivo = objective;
-        
-        // NIVEL DIFICULTAD
-        System.out.println("ingrese la DIFICULTAD de la actividad: ");
-        String level = input.next();
-        this.descripcion = level;
-        
-        // DURACIÓN
-        System.out.println("ingrese la DURACIÓN de la actividad en minutos como un número entero: ");
-        int duration = input.nextInt();
-        this.duracion = duration;
-        
-        // FECHA LÍMITE
-        System.out.println("ingrese la FECHA LÍMITE de la actividad: ");
-        String limitDate = input.next();
-        this.fechaLimite = limitDate;
-        
-        // OBLIGATORIO
-        System.out.println("Es esta actividad OBLIGATORIA? [Y/N]: ");
-        String required = input.next();
-        if (required == "Y") 
-        {this.obligatorio = true;} 
-        else
-        {this.obligatorio = false;}
-        
-     // NOMBRE
-        System.out.println("Ingrese su nombre para registrar AUTOR: ");
-        String author = input.next();
-        this.autor = author;
-        
-        input.close();
-        */
+
         HashMap<String, Object> atributos = new HashMap<>();
         atributos.put("tipo", this.tipo);
         atributos.put("descripcion", this.descripcion);
@@ -237,8 +187,6 @@ public class Actividad implements Serializable {
         // Llamar a agregarActividad en ActividadLoader para almacenar en el archivo
         ActividadLoader.agregarActividad(this);
     }
-
-    //cambios Camilo
 	
 
 	/** FUNCIONES */
