@@ -84,7 +84,6 @@ public class Actividad implements Serializable {
     private String reseñas;
     private double rating;
     private String autor;
-    private String learningPath;
 
  // Constructor
 
@@ -103,7 +102,7 @@ public class Actividad implements Serializable {
 				this.fechaLimite = fechaLimite;
 				this.obligatorio = obligatorio;
 				this.autor = autor;
-}
+    }
 	
 
 	// Getters para cada atributo
@@ -123,6 +122,9 @@ public class Actividad implements Serializable {
         return objetivo;
     }
 
+    public String getContenido() {
+    	return contenido;
+    }
     public String getDificultad() {
         return dificultad;
     }
@@ -158,11 +160,21 @@ public class Actividad implements Serializable {
     public String getAutor() {
         return autor;
     }
-
-    public String getLearningPath() {
-        return learningPath;
-    }
     
+    public void setResultado(String resultado) {
+        this.resultado= resultado ;
+    }
+
+
+    public void setReseñas(String reseña) {
+        this.reseñas= reseña; 
+    	
+    }
+
+    public void setRating(Double rating) {
+        	this.rating= rating;
+    }
+
  // Método para añadir una nueva actividad al HashMap y al archivo binario
     public void añadirActividad(HashMap<String, HashMap<String, Object>> actividadesMap, String nombreArchivo) {
 
@@ -179,7 +191,6 @@ public class Actividad implements Serializable {
         atributos.put("reseñas", this.reseñas);
         atributos.put("rating", this.rating);
         atributos.put("autor", this.autor);
-        atributos.put("learningPath", this.learningPath);
 
         // Actualizar el HashMap en memoria con la nueva actividad
         actividadesMap.put(this.nombre, atributos);

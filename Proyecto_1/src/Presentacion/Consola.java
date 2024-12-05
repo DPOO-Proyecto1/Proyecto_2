@@ -7,20 +7,22 @@ import clases.LearningPathTree.Profesor;
 import clases.LearningPathTree.Usuario;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 import Persistencia.ActividadLoader;
+import Persistencia.LearningPathLoader;
 
 public class Consola {
 	static HashMap<String, HashMap<String, Object>> actividades = ActividadLoader.cargarActividadesDesdeArchivo("Actividades.bin");
-	//static HashMap<string, HashMap<String, Object>> learningPaths = learningPathLoader.cargarLearningPaths(actividades);
+	static HashMap<String, LearningPath> learningPaths = LearningPathLoader.cargarLearningPathsDesdeArchivo("LearningPaths.bin");
         
     public static void main(String[] args) throws Throwable {
         Scanner scanner = new Scanner(System.in);
         String correo, contraseña;
-        String rol;
         String archivoCSV = "Usuarios.csv";
         List<Usuario> usuarios = Usuario.cargarUsuarios(archivoCSV);
         
@@ -121,10 +123,43 @@ public class Consola {
 
             switch (opcion.toLowerCase()) {
 	            case "a":
-	                profesor.crearLearningPath();
-	                break;
+	            	
+	                Scanner inputL = new Scanner(System.in);
+	                System.out.println("ingrese el nombre de una de las actividades : ");
+	                String actividadL=inputL.next();
+	                if (actividades.containsKey(actividadL)) {
+	                	System.out.println("Ingrese el titulo del LarningPath: ");
+		                String tituloL = inputL.next();
+		                System.out.println("ingrese la DESCRIPCIÓN del LarningPath como un párrafo: ");
+		                String descriptionL = inputL.next();
+		                System.out.println("ingrese el OBJETUVO del LarningPath como un párrafo: ");
+		                String objetivoL = inputL.next();
+		                System.out.println("ingrese la DIFICULTAD del LarningPath: ");
+		                String dificultadL = inputL.next();
+		                System.out.println("ingrese la DURACIÓN de la actividad en minutos como un número entero: ");
+		                int durationL = inputL.nextInt();
+		                int version = 1;
+		                LocalDate fechaActual = LocalDate.now();
+		                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		                String fechaComoTexto = fechaActual.format(formatter);
+		                String fechaDeModificacion= fechaComoTexto;
+		                
+		                
+		                LearningPath nuevoLearning= new LearningPath(
+		                		tituloL, descriptionL, objetivoL, dificultadL, durationL,
+		                		fechaComoTexto, fechaDeModificacion, version, actividadL);
+		                
+		                learningPaths.put(nuevoLearning.getTitulo(), nuevoLearning);
+		                
+		                nuevoLearning.agregarLearningPath();
+		                
+	                }
+	                else System.out.println("Actividad inexistente, intente de nuevo ");
+	                
+	            	break;
 	            case "b":
 	                profesor.editarLearningPath();
+	                
 	                break;
 	            case "c":
 	            	Scanner input = new Scanner(System.in);
@@ -137,9 +172,9 @@ public class Consola {
 	                System.out.println("ingrese el objetivo de la actividad como un párrafo: ");
 	                String objetivo = input.next();
 	                System.out.println("ingrese la DIFICULTAD de la actividad: ");
-	                String contenido = input.next();
-	                System.out.println("ingrese el CONTENIDO de la actividad: ");
 	                String dificultad = input.next();
+	                System.out.println("ingrese el CONTENIDO de la actividad: ");
+	                String contenido = input.next();
 	                System.out.println("ingrese la DURACIÓN de la actividad en minutos como un número entero: ");
 	                int duration = input.nextInt();
 	                System.out.println("ingrese las actividades previas a la actividad: ");
@@ -185,8 +220,6 @@ public class Consola {
                     break;
             }
         }
-    }
-    
-    
+    }    
 }
 

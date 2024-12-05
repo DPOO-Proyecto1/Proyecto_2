@@ -9,9 +9,6 @@ public class Profesor extends Usuario {
         super(username, email, password, "profesor"); 
     }
 	
-	public void crearLearningPath() {
-		
-	}
 	
 	public void editarLearningPath() {
 		

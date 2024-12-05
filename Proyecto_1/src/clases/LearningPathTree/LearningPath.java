@@ -1,175 +1,147 @@
-
-/*package clases.LearningPathTree;
-import java.util.HashMap;
-import java.io.IOException;
-import java.util.ArrayList;
-import Persistencia.ArchivoCSV;
-// Clase del Learning Path
- 
-public class LearningPath {
-	// ATRIBUTOS 
-	public String titulo;
-	public String descripcion;
-	public String objetivos;
-	public String nivelDificultad;
-	public int duracion;
-	public float rating;
-	public String fechaDeCreacion;
-	public String fechaDeModificacion;
-	public String vercion;
-    public HashMap<String, String> estructura;
-	//FUNCIONES 
-	public void agregarActividad() {
-		
-	}
-	
-	public void editarLearningPath() {
-		
-	}
-	
-
-	
-	private ArrayList<Actividad> actividades;
-	public ArrayList<Actividad> getActividades() throws IOException {
-		this.leerActividades();
-		return actividades;
-	}
-	public LearningPath() {
-		this.actividades = new ArrayList<Actividad>();
-	}
-	public void agregarActividad(String nombre, String tipo) {
-		Actividad nuevaActividad = new Actividad(nombre, tipo);
-		this.actividades.add(nuevaActividad);
-	}
-
-	public static void guardarActividad(ArrayList<Actividad> actividades) throws IOException {
-		ArrayList<String> textos = new ArrayList<String>();
-		for (Actividad actividad : actividades) 
-			textos.add(actividad.toString());
-		
-		ArchivoCSV.guardarTextoCSV(textos, "Actividades.csv");
-	}
-	/*public static void guardarActividad() throws IOException {
-		ArrayList<String> textos = new ArrayList<String>();
-		for(Actividad actividad : this.actividades) 
-			textos.add(actividad.toString());
-		
-		ArchivoCSV.guardarTextoCSV(textos, "Actividades.csv");
-	}
-	
-	public void leerActividades() throws IOException {
-		ArrayList<String> textos = ArchivoCSV.leerArchivoCSV("Actividades.csv");
-		for(String texto : textos) {
-			String []valores = texto.split(",");
-			Actividad ActividadLeida = new Actividad(valores[0], valores[1]);
-			this.actividades.add(ActividadLeida);
-		}
-	}
-}*/
 package clases.LearningPathTree;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Scanner;
 
-import Persistencia.ArchivoCSV;
+import Persistencia.ActividadLoader;
+import Persistencia.LearningPathLoader;
+
 /**
  * Clase del Learning Path
  */
-public class LearningPath {
-	/** ATRIBUTOS */
-	public String titulo;
-	public String descripcion;
-	public String objetivos;
-	public String nivelDificultad;
-	public int duracion;
-	public float rating;
-	public String fechaDeCreacion;
-	public String fechaDeModificacion;
-	public String version;
-    public HashMap<String, String> estructura;
-    public List<Actividad> listaActividades;
-	/** FUNCIONES */
-	
-	public void editarLearningPath(Actividad actividad) {
-		
-		boolean processing = true; 
-		while (processing) 
-		{
-			System.out.println("1.) Agregar Actividad a LearningPath");
-			System.out.println("2.) Eliminar Actividad de LearningPath");
-			Scanner input = new Scanner(System.in);
-			System.out.println("Seleccionar opción: ");
-			String answer = input.next();
-			int choice =Integer.parseInt(answer);
-			input.close();
-		
-			if (choice == 1) {
-				listaActividades.add(actividad);
-				System.out.println("La Actividad ha sido añadida correctamente.");
-				processing = false;
-			} else if (choice == 2) {
-				listaActividades.remove(actividad);
-				System.out.println("La Actividad ha sido eliminada correctamente.");
-				processing = false;
-			} else  {
-				System.out.println("Valor ingresado no funciona, intente otra vez.");
-			}
-		}
+import java.io.Serializable;
+
+public class LearningPath implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    private String titulo;
+    private String descripcion;
+    private String objetivos;
+    private String nivelDificultad;
+    private int duracion;
+    private float rating;
+    private String fechaDeCreacion;
+    private String fechaDeModificacion;
+    private int version;
+    private String actividades;
+
+    // Constructor
+    public LearningPath(String titulo, String descripcion, String objetivos, String nivelDificultad,
+                        int duracion, String fechaDeCreacion, String fechaDeModificacion,
+                        int version, String actividades) {
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.objetivos = objetivos;
+        this.nivelDificultad = nivelDificultad;
+        this.duracion = duracion;
+        this.fechaDeCreacion = fechaDeCreacion;
+        this.fechaDeModificacion = fechaDeModificacion;
+        this.version = version;
+        this.actividades = actividades;
+    }
+
+	public String getTitulo() {
+		return titulo;
 	}
-	/*
-	public LearningPath() {
-		this.actividades = new ArrayList<Actividad>();
+
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
-	*public void agregarActividad(String nombre, String tipo) {
-		Actividad nuevaActividad = new Actividad(nombre, tipo);
-		this.actividades.add(nuevaActividad);
+
+
+	public String getDescripcion() {
+		return descripcion;
 	}
-	*/
-	public HashMap<String, List<String>> cargarLearningPaths(HashMap<String, HashMap<String, String>> actividades) {
-		
-		// Este será el resultado
-        HashMap<String, List<String>> agrupadasPorLearningPath = new HashMap<>();
 
-        // Recorremos el HashMap original
-        for (Entry<String, HashMap<String, String>> actividadEntry : actividades.entrySet()) {
-            String nombreActividad = actividadEntry.getKey(); // Nombre de la actividad
-            HashMap<String, String> atributos = actividadEntry.getValue(); // Atributos de la actividad
 
-            // Obtenemos el valor de "learningPath"
-            String learningPath = atributos.get("learningPath");
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-            // Si el learningPath es "no", lo ignoramos
-            if ( learningPath == "no") {
-                continue;
-            }
 
-            // Si el learningPath no está en el resultado, lo inicializamos
-            agrupadasPorLearningPath.putIfAbsent(learningPath, new ArrayList<>());
+	public String getObjetivos() {
+		return objetivos;
+	}
 
-            // Agregamos el nombre de la actividad a la lista correspondiente
-            agrupadasPorLearningPath.get(learningPath).add(nombreActividad);
-        }
-        
-        for (Entry<String, List<String>> entry : agrupadasPorLearningPath.entrySet()) {
-            System.out.println("Learning Path: " + entry.getKey());
-            System.out.println("Actividades: " + entry.getValue());
-        }
-        return agrupadasPorLearningPath;
+
+	public void setObjetivos(String objetivos) {
+		this.objetivos = objetivos;
+	}
+
+
+	public String getNivelDificultad() {
+		return nivelDificultad;
+	}
+
+
+	public void setNivelDificultad(String nivelDificultad) {
+		this.nivelDificultad = nivelDificultad;
+	}
+
+
+	public int getDuracion() {
+		return duracion;
+	}
+
+
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
+	}
+
+
+	public float getRating() {
+		return rating;
+	}
+
+
+	public void setRating(float rating) {
+		this.rating = rating;
+	}
+
+
+	public String getFechaDeCreacion() {
+		return fechaDeCreacion;
+	}
+
+
+	public void setFechaDeCreacion(String fechaDeCreacion) {
+		this.fechaDeCreacion = fechaDeCreacion;
+	}
+
+
+	public String getFechaDeModificacion() {
+		return fechaDeModificacion;
+	}
+
+
+	public void setFechaDeModificacion(String fechaDeModificacion) {
+		this.fechaDeModificacion = fechaDeModificacion;
+	}
+
+
+	public int getVersion() {
+		return version;
+	}
+
+
+	public void setVersion() {
+		this.version = version+1;
+	}
+
+
+	public String getActividades() {
+		return actividades;
+	}
+
+
+	public void setActividades(String actividad) {
+		this.actividades = actividad+" "+actividades;
 	}
 	
-	
-	
-	/*public static void guardarActividad() throws IOException {
-		ArrayList<String> textos = new ArrayList<String>();
-		for(Actividad actividad : this.actividades) 
-			textos.add(actividad.toString());
-		
-		ArchivoCSV.guardarTextoCSV(textos, "Actividades.csv");
-	}*/
-	
-	
+	public void agregarLearningPath() {
+        // Llamar a agregarLearningPath en LearningPathLoader para almacenar en el archivo
+        LearningPathLoader.agregarLearningPath(this);
+    }
 }
-
