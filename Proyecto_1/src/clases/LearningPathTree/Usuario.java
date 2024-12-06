@@ -24,11 +24,11 @@ import java.util.List;
 
 public class Usuario 
 {
-	private String username;
-	private String password;
-	private String email;
-	private String rol;
-	private boolean ocupado;
+	public String username;
+    public String password;
+	public String email;
+	public String rol;
+	public boolean ocupado;
 	
 	
 	public Usuario(String username, String email, String password, String rol) {
